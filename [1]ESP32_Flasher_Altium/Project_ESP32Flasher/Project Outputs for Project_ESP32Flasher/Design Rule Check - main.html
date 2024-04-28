@@ -1,0 +1,393 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11/24/2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">2:13:21 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc" class="file"><acronym title="J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc">J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">19</td></tr>
+</table>
+</td>
+</table><a name="IDKMKEU152ZQE5CRHRXJXS25MQZBKYZIWBF2UGZ1BBLKXFBQFFV5NI"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4GCIKDCVJTBRFQNNPIMML44MLJ5YHJZTAIWZISOXOC40IZWRSMTE">Clearance Constraint (Gap=0.254mm) (IsKeepOut),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDZD3WXDLGD3NE1ECGBPOTQSXPEUMWBPY2U3R0JO5CSQBELLMUMPK">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTCOW3CL0QQBRTV3O0B3VLPDULTQ0FPXLHLTKQBFF3B1BENTNJZM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZQAB0VITTITTITIPMH3RLQPGPOF2RDXQGILW12ERNRSC33ZILKZB">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIXWUL00LG4GPOC4RY4F5C5XDDHJV5UYF5HX2RLNSXFUQPYLSUSE">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4YCIIIX0G11OLXDDV1XK4MCUFI2QYBBQTNIEFQF1ALCJRZ4KVZWO">Width Constraint (Min=0.127mm) (Max=1mm) (Preferred=0.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOICELTKLMRG3PZZVA1AXAAHGSBJYREHJDNJZHOCOCS32US1NH0WP">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPMUOOBJ234ULD4H1ZVCQ1W2QOEX1ZQ1APUABXTB4DCINL4DB3CEH">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0RD5PLI04TBDPCFUEFWUR4WWFIIK1KGRVFCBSKLXFDP25QGG410P">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5Y4ME1LVHIXFN5FSH1VMQGKSKDF5FEEIINFAURPJ5ECQPWKLOFHF">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">16</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRHI3TBYR24ENL4EJXDVARPXELFZYZWRPNHJVE2IH3IRDJVHZLB4E">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDANYXTROW5WI4FQNGGVW3COZ4VM5YARVGZHO4VBBXUQZ20Z4TYVRE">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQKJQZO5RRHBH202JPFQU0IUYNHVO4P0W2BPC4GKZWZCY1UDXGXP">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMG3AYN1II1SZPXIXWNO23O33RMHGCIIT20RNFBJI5NTIH3YQKSVC">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">19</td>
+</tr>
+</table><br><a name="ID5Y4ME1LVHIXFN5FSH1VMQGKSKDF5FEEIINFAURPJ5ECQPWKLOFHF"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1451.875mil|Location2.X=1463.125mil|Location1.Y=1597.588mil|Location2.Y=1608.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1451.875mil|Location2.X=1463.125mil|Location1.Y=1597.588mil|Location2.Y=1608.838mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.244mm &lt; 0.254mm) Between Pad C1-1(37.719mm,40.22mm) on Top Layer And Pad C2-1(36.322mm,40.22mm) on Top Layer [Top Solder] Mask Sliver [0.244mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1505.933mil|Location2.X=1517.183mil|Location1.Y=1580.103mil|Location2.Y=1591.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1505.933mil|Location2.X=1517.183mil|Location1.Y=1580.103mil|Location2.Y=1591.353mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.196mm &lt; 0.254mm) Between Pad C1-1(37.719mm,40.22mm) on Top Layer And Via (38.993mm,40.278mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.196mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1451.875mil|Location2.X=1463.125mil|Location1.Y=1530.659mil|Location2.Y=1541.909mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1451.875mil|Location2.X=1463.125mil|Location1.Y=1530.659mil|Location2.Y=1541.909mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.244mm &lt; 0.254mm) Between Pad C1-2(37.719mm,38.52mm) on Top Layer And Pad C2-2(36.322mm,38.52mm) on Top Layer [Top Solder] Mask Sliver [0.244mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.492mil|Location2.X=1564.742mil|Location1.Y=1580.103mil|Location2.Y=1591.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1553.492mil|Location2.X=1564.742mil|Location1.Y=1580.103mil|Location2.Y=1591.353mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.214mm &lt; 0.254mm) Between Pad C3-1(40.21mm,40.386mm) on Top Layer And Via (38.993mm,40.278mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.214mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.917mil|Location2.X=1567.167mil|Location1.Y=1608.258mil|Location2.Y=1620.521mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1555.917mil|Location2.X=1567.167mil|Location1.Y=1608.258mil|Location2.Y=1620.521mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.109mm &lt; 0.254mm) Between Pad C3-1(40.21mm,40.386mm) on Top Layer And Via (39.2mm,41.3mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.109mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1423.391mil|Location2.Y=1434.641mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1423.391mil|Location2.Y=1434.641mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.123mm &lt; 0.254mm) Between Pad J1-1(29.98mm,36.622mm) on Top Layer And Pad J1-2(29.98mm,35.972mm) on Top Layer [Top Solder] Mask Sliver [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1175.674mil|Location2.X=1186.924mil|Location1.Y=1449.473mil|Location2.Y=1460.723mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1175.674mil|Location2.X=1186.924mil|Location1.Y=1449.473mil|Location2.Y=1460.723mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.148mm &lt; 0.254mm) Between Pad J1-1(29.98mm,36.622mm) on Top Layer And Pad J1-SH(30.005mm,37.822mm) on Multi-Layer [Top Solder] Mask Sliver [0.148mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1397.8mil|Location2.Y=1409.05mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1397.8mil|Location2.Y=1409.05mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.123mm &lt; 0.254mm) Between Pad J1-2(29.98mm,35.972mm) on Top Layer And Pad J1-3(29.98mm,35.322mm) on Top Layer [Top Solder] Mask Sliver [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1372.21mil|Location2.Y=1383.46mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1372.21mil|Location2.Y=1383.46mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.123mm &lt; 0.254mm) Between Pad J1-3(29.98mm,35.322mm) on Top Layer And Pad J1-4(29.98mm,34.672mm) on Top Layer [Top Solder] Mask Sliver [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1346.619mil|Location2.Y=1357.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1203.765mil|Location2.X=1215.015mil|Location1.Y=1346.619mil|Location2.Y=1357.869mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.123mm &lt; 0.254mm) Between Pad J1-4(29.98mm,34.672mm) on Top Layer And Pad J1-5(29.98mm,34.022mm) on Top Layer [Top Solder] Mask Sliver [0.123mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1175.674mil|Location2.X=1186.924mil|Location1.Y=1320.536mil|Location2.Y=1331.786mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1175.674mil|Location2.X=1186.924mil|Location1.Y=1320.536mil|Location2.Y=1331.786mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.148mm &lt; 0.254mm) Between Pad J1-5(29.98mm,34.022mm) on Top Layer And Pad J1-SH(30.005mm,32.822mm) on Multi-Layer [Top Solder] Mask Sliver [0.148mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.922mil|Location2.X=2350.172mil|Location1.Y=1344.375mil|Location2.Y=1355.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.922mil|Location2.X=2350.172mil|Location1.Y=1344.375mil|Location2.Y=1355.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.19mm &lt; 0.254mm) Between Pad R2-2(60.198mm,33.972mm) on Top Layer And Via (59.055mm,34.29mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.19mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2399.78mil|Location2.X=2411.03mil|Location1.Y=1494.375mil|Location2.Y=1505.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2399.78mil|Location2.X=2411.03mil|Location1.Y=1494.375mil|Location2.Y=1505.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.233mm &lt; 0.254mm) Between Pad T2-1(61.976mm,38.125mm) on Top Layer And Via (60.579mm,38.1mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.233mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.509mil|Location2.X=1934.759mil|Location1.Y=1234.355mil|Location2.Y=1245.605mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1923.509mil|Location2.X=1934.759mil|Location1.Y=1234.355mil|Location2.Y=1245.605mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.188mm &lt; 0.254mm) Between Pad U2-1(49.022mm,32.346mm) on Top Layer And Via (49mm,31mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.188mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2273.903mil|Location2.X=2285.153mil|Location1.Y=1518.017mil|Location2.Y=1529.267mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2273.903mil|Location2.X=2285.153mil|Location1.Y=1518.017mil|Location2.Y=1529.267mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.196mm &lt; 0.254mm) Between Pad U2-9(57.912mm,37.846mm) on Top Layer And Via (57.9mm,39.2mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.196mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1533.61mil|Location2.X=1544.86mil|Location1.Y=1600.231mil|Location2.Y=1611.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1533.61mil|Location2.X=1544.86mil|Location1.Y=1600.231mil|Location2.Y=1611.481mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.04mm &lt; 0.254mm) Between Via (38.993mm,40.278mm) from Top Layer to Bottom Layer And Via (39.2mm,41.3mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.04mm] / [Bottom Solder] Mask Sliver [0.04mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRHI3TBYR24ENL4EJXDVARPXELFZYZWRPNHJVE2IH3IRDJVHZLB4E"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.254mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2465.353mil|Location2.X=2476.603mil|Location1.Y=1350.376mil|Location2.Y=1361.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2465.353mil|Location2.X=2476.603mil|Location1.Y=1350.376mil|Location2.Y=1361.626mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.253mm &lt; 0.254mm) Between Arc (62.992mm,34.746mm) on Top Overlay And Pad T1-1(61.976mm,34.163mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2465.353mil|Location2.X=2476.603mil|Location1.Y=1506.376mil|Location2.Y=1517.626mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2465.353mil|Location2.X=2476.603mil|Location1.Y=1506.376mil|Location2.Y=1517.626mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.253mm &lt; 0.254mm) Between Arc (62.992mm,38.708mm) on Top Overlay And Pad T2-1(61.976mm,38.125mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2341.659mil|Location2.X=2352.909mil|Location1.Y=1465.668mil|Location2.Y=1476.918mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=J:\Projects\[1]Projects\[6]ESP32_Flasher\Project_ESP32Flasher\main.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2341.659mil|Location2.X=2352.909mil|Location1.Y=1465.668mil|Location2.Y=1476.918mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.206mm &lt; 0.254mm) Between Pad R1-1(60.071mm,36.893mm) on Top Layer And Text "R1" (59.817mm,37.55mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.206mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
